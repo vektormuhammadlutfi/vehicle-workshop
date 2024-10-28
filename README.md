@@ -13,9 +13,10 @@ This is a simple web application that allows you to create and manage vehicles.
 
 ## Features
 
-- ...
-- ...
-- ...
+- Add, update, and delete vehicle records.
+- Search and filter vehicles based on various criteria (e.g., model, year, status).
+- User authentication and authorization.
+- Detailed vehicle information and maintenance history.
 
 ## Specification
 
@@ -68,7 +69,14 @@ Why using Bun or Deno?
 
 ## API Documentation/Specification
 
-| Endpoint  | Method | Description      |
-| --------- | ------ | ---------------- |
-| /vehicles | GET    | Get all vehicles |
-| ...       | ...    | ...              |
+| Endpoint      | Method | Description                          |
+|---------------|--------|--------------------------------------|
+| /vehicles     | GET    | Get all vehicles                     |
+| /vehicles     | POST   | Add a new vehicle                    |
+| /vehicles/:id | GET    | Get details for a specific vehicle   |
+| /vehicles/:id | PUT    | Update a specific vehicle            |
+| /vehicles/:id | DELETE | Delete a specific vehicle            |
+| /users        | GET    | Get all users                        |
+| /users        | POST   | Register a new user                  |
+| /auth/login   | POST   | User login                           |
+| /auth/logout  | POST   | User logout                          |
