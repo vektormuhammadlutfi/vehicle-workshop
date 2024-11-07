@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model Customer {
+  id          Int          @id @default(autoincrement())
+  name        String       
+  email       String       @unique
+  phoneNumber String?      
+  vehicles    VehicleUnit[] // A customer can have multiple vehicle units
+  
+  @@map("customers") // Maps the model to the 'customers' table
+}
+
+model VehicleBrand {
+  id     Int            @id @default(autoincrement())
+  name   String         
+  //models VehicleModel[] // One brand can have multiple models
+
+  @@map("vehicle_brands") // Maps the model to the 'vehicle_brands' table
+}
+
+model VehicleModel {
+  id        Int            @id @default(autoincrement())
+  name      String         
+  brandId   Int            // Foreign key referencing VehicleBrand
+  //types     VehicleType[]  // One model can have multiple types
+
+  @@map("vehicle_models") // Maps the model to the 'vehicle_models' table
+}
+
+model VehicleType {
+  id      Int            @id @default(autoincrement())
+  name    String         
+  modelId Int            // Foreign key referencing VehicleModel
+  //colors  VehicleColor[] // One type can have multiple colors
+
+  @@map("vehicle_types") // Maps the model to the 'vehicle_types' table
+}
+
+model VehicleColor {
+  id      Int            @id @default(autoincrement())
+  name    String         
+  typeId  Int            // Foreign key referencing VehicleType
+
+  @@map("vehicle_colors") // Maps the model to the 'vehicle_colors' table
+}
+
+model VehicleUnit {
+  id         Int         @id @default(autoincrement())
+  colorId    Int         // Foreign key referencing VehicleColor
+  customerId Int         // Foreign key referencing Customer
+  customer   Customer    @relation(fields: [customerId], references: [id]) // Relationship back to Customer
+  
+  @@map("vehicle_units") // Maps the model to the 'vehicle_units' table
+}
