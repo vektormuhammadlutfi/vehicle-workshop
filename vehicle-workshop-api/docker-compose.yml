@@ -1,0 +1,17 @@
+services:
+  backend:
+    image: vehicle-backend
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    env_file:
+      - .env
+
+  database:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    restart: always

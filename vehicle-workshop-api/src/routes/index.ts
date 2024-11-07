@@ -4,29 +4,10 @@
 import { Hono } from 'hono';
 
 // Import controllers
-import {
-    getPosts,
-    createPost,
-    getPostById,
-    updatePost,
-    deletePost,
-} from '../controllers/PostController';
-
-import {
-    getVehicleBrands,
-    createVehicleBrand,
-    getVehicleBrandById,
-    updateVehicleBrand,
-    deleteVehicleBrand,
-} from '../controllers/VehicleBrandController';
-
-import {
-    getVehicleModels,
-    createVehicleModel,
-    getVehicleModelById,
-    updateVehicleModel,
-    deleteVehicleModel,
-} from '../controllers/VehicleModelController';
+import {getPosts, createPost, getPostById, updatePost, deletePost} from '../controllers/PostController';
+import {getVehicleBrands,createVehicleBrand,getVehicleBrandById,updateVehicleBrand,deleteVehicleBrand} from '../controllers/VehicleBrandController';
+import {getVehicleModels,createVehicleModel,getVehicleModelById,updateVehicleModel,deleteVehicleModel} from '../controllers/VehicleModelController';
+import {getVehicleTypes,createVehicleType,getVehicleTypeById,updateVehicleType,deleteVehicleType} from '../controllers/VehicleTypeController';
 
 // Initialize router
 const router = new Hono();
@@ -51,6 +32,14 @@ router.post('/vehicle-models', (c) => createVehicleModel(c));             // Cre
 router.get('/vehicle-models/:id', (c) => getVehicleModelById(c));         // Get vehicle model by ID
 router.patch('/vehicle-models/:id', (c) => updateVehicleModel(c));        // Update vehicle model
 router.delete('/vehicle-models/:id', (c) => deleteVehicleModel(c));       // Delete vehicle model
+
+
+// Routes for vehicle types
+router.get('/vehicle-types', (c) => getVehicleTypes(c));                // Get all vehicle types
+router.post('/vehicle-types', (c) => createVehicleType(c));             // Create a new vehicle type
+router.get('/vehicle-types/:id', (c) => getVehicleTypeById(c));         // Get vehicle type by ID
+router.patch('/vehicle-types/:id', (c) => updateVehicleType(c));        // Update vehicle type
+router.delete('/vehicle-types/:id', (c) => deleteVehicleType(c));       // Delete vehicle type
 
 
 // Export routes

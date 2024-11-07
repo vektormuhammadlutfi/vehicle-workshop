@@ -7,16 +7,59 @@ import prisma from "../../prisma/client";
 /**
  * Getting all vehicle brands
  */
+// export const getVehicleBrands = async (c: Context) => {
+//     try {
+//         // Get all vehicle brands
+//         const vehicleBrands = await prisma.vehicleBrand.findMany({ orderBy: { id: 'desc' } });
+
+//         // Return JSON
+//         return c.json({
+//             success: true,
+//             message: 'List of Vehicle Brands!',
+//             data: vehicleBrands
+//         }, 200);
+
+//     } catch (e: unknown) {
+//         console.error(`Error getting vehicle brands: ${e}`);
+//         return c.json({ success: false, message: 'Error retrieving vehicle brands' }, 500);
+//     }
+// }
+
 export const getVehicleBrands = async (c: Context) => {
     try {
-        // Get all vehicle brands
-        const vehicleBrands = await prisma.vehicleBrand.findMany({ orderBy: { id: 'desc' } });
+        // Get the query parameters for pagination
+        const page = parseInt(c.req.query('page') || '1'); // Default to page 1
+        const limit = parseInt(c.req.query('limit') || '10'); // Default limit to 10
+
+        // Calculate the offset for pagination
+        const offset = (page - 1) * limit;
+
+        // Get paginated vehicle brands
+        const vehicleBrands = await prisma.vehicleBrand.findMany({
+            skip: offset, // Skip offset records
+            take: limit,  // Limit the number of records returned
+            orderBy: { id: 'desc' } // Order by id descending
+        });
+
+        // Get the total count of vehicle brands for total pages
+        const totalCount = await prisma.vehicleBrand.count();
+
+        // Calculate total pages
+        const totalPages = Math.ceil(totalCount / limit);
 
         // Return JSON
         return c.json({
             success: true,
             message: 'List of Vehicle Brands!',
-            data: vehicleBrands
+            data: {
+                vehicleBrands,
+                pagination: {
+                    currentPage: page,
+                    totalPages: totalPages,
+                    totalCount: totalCount,
+                    limit: limit,
+                },
+            },
         }, 200);
 
     } catch (e: unknown) {
