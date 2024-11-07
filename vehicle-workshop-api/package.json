@@ -1,7 +1,15 @@
 {
   "name": "vehicle-workshop-api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "seed": "prisma db seed",
+    "studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "bun prisma/seed.ts`"
   },
   "dependencies": {
     "@prisma/client": "5.21.1",

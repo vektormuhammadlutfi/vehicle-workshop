@@ -11,7 +11,10 @@ services:
       - .env
 
   database:
-    image: mysql:8.0
+    image: postgres:alpine
     ports:
-      - "3306:3306"
+      - "5432:5432"
     restart: always
+    env_file:
+      - path: .env
+        required: true
