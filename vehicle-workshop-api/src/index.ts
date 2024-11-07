@@ -1,12 +1,13 @@
 import { Hono } from "hono";
 
-import { Routes } from "./routes";
+import { router } from "./routes";
 
 // Initialize the Hono app
-const app = new Hono().basePath("/api");
+const app = new Hono();
 
 // Mount routes
-app.route("/", Routes);
+app.get("/", (c) => c.json({ message: "Vehicle Workshop API", api: "/api" }));
+app.basePath("/api").route("/", router);
 
 // Start the server with specified port using Bun.serve
 const port = process.env.PORT || 3000; // You can change this port

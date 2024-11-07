@@ -1,4 +1,4 @@
-import { prisma } from "../src/libs/db";
+import { prisma } from "../src/libs/prisma";
 
 async function main() {
   // Seed Customers
