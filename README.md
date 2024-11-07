@@ -80,3 +80,37 @@ Why using Bun or Deno?
 | /users        | POST   | Register a new user                  |
 | /auth/login   | POST   | User login                           |
 | /auth/logout  | POST   | User logout                          |
+
+
+
+## API Documentation/Specification
+
+#### Vehicle Brands
+- **`/vehicle-brands`**
+  - **GET**: Retrieves a list of all vehicle brands.
+  - **POST**: Creates a new vehicle brand by providing brand details in the request body.
+
+- **`/vehicle-brands/:id`**
+  - **GET**: Retrieves details of a specific vehicle brand identified by its ID.
+  - **PUT**: Updates the details of a specific vehicle brand identified by its ID.
+  - **DELETE**: Deletes a specific vehicle brand identified by its ID.
+
+#### Vehicle Models
+- **`/vehicle-models`**
+  - **GET**: Retrieves a list of all vehicle models.
+  - **POST**: Creates a new vehicle model by providing model details in the request body.
+
+- **`/vehicle-models/:id`**
+  - **GET**: Retrieves details of a specific vehicle model identified by its ID.
+  - **PUT**: Updates the details of a specific vehicle model identified by its ID.
+  - **DELETE**: Deletes a specific vehicle model identified by its ID.
+
+#### Vehicle Types
+- **`/vehicle-types`**
+  - **GET**: Retrieves a list of all vehicle types.
+  - **POST**: Creates a new vehicle type by providing type details in the request body.
+
+- **`/vehicle-types/:id`**
+  - **GET**: Retrieves details of a specific vehicle type identified by its ID.
+  - **PUT**: Updates the details of a specific vehicle type identified by its ID.
+  - **DELETE**: Deletes a specific vehicle type identified by its ID.
