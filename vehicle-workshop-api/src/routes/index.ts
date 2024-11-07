@@ -6,21 +6,21 @@ import {
   getVehicleBrandById,
   updateVehicleBrand,
   deleteVehicleBrand,
-} from "../controllers/VehicleBrandController";
+} from "../controllers/brand";
 import {
   getVehicleModels,
   createVehicleModel,
   getVehicleModelById,
   updateVehicleModel,
   deleteVehicleModel,
-} from "../controllers/VehicleModelController";
+} from "../controllers/model";
 import {
   getVehicleTypes,
   createVehicleType,
   getVehicleTypeById,
   updateVehicleType,
   deleteVehicleType,
-} from "../controllers/VehicleTypeController";
+} from "../controllers/type";
 
 // Initialize router
 export const router = new Hono();
