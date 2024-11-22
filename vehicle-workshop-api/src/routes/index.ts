@@ -22,13 +22,18 @@ import {
   deleteVehicleType,
 } from "../controllers/type";
 
+import {
+  getCustomers,
+  getCustomerById
+} from '../controllers/customer';
+
 // Initialize router
 export const router = new Hono();
 
 router.get("/", (c) =>
   c.json({
     message: "API Routes",
-    endpoints: ["/api/vehicle-brands", "/api/vehicle-models"],
+    endpoints: ["/api/vehicle-brands", "/api/vehicle-models", "/api/vehicle-types", "/api/customers"],
   })
 );
 
@@ -52,3 +57,7 @@ router.post("/vehicle-types", (c) => createVehicleType(c)); // Create a new vehi
 router.get("/vehicle-types/:id", (c) => getVehicleTypeById(c)); // Get vehicle type by ID
 router.patch("/vehicle-types/:id", (c) => updateVehicleType(c)); // Update vehicle type
 router.delete("/vehicle-types/:id", (c) => deleteVehicleType(c)); // Delete vehicle type
+
+// Routes for customers
+router.get("/customers", (c) => getCustomers(c)); // Get all customers
+router.get("/customers/:id", (c) => getCustomerById(c)); // Get customer by ID

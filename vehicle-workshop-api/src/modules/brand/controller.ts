@@ -2,27 +2,6 @@ import { Context } from "hono";
 
 import { prisma } from "../../libs/prisma";
 
-/**
- * Getting all vehicle brands
- */
-// export const getVehicleBrands = async (c: Context) => {
-//     try {
-//         // Get all vehicle brands
-//         const vehicleBrands = await prisma.vehicleBrand.findMany({ orderBy: { id: 'desc' } });
-
-//         // Return JSON
-//         return c.json({
-//             success: true,
-//             message: 'List of Vehicle Brands!',
-//             data: vehicleBrands
-//         }, 200);
-
-//     } catch (e: unknown) {
-//         console.error(`Error getting vehicle brands: ${e}`);
-//         return c.json({ success: false, message: 'Error retrieving vehicle brands' }, 500);
-//     }
-// }
-
 export const getVehicleBrands = async (c: Context) => {
   try {
     // Get the query parameters for pagination
